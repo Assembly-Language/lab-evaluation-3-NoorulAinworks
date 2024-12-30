@@ -1,35 +1,32 @@
-
 #include <stdio.h>
+#include <conio.h>
 
-
-//extern "C" void __stdcall asmfunc(void);
-
+// Function prototype for the assembly function
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void __stdcall asmfunc(int p1 ,int p2);
+void __stdcall asmfunc(int *array, int size); // Updated prototype to include size
 
 #ifdef __cplusplus
 }
 #endif
 
-
 int main() {
     system("cls");
-    int abc;
-    printf("assembly proc calling from  from C! \n");
-getch();
+    
+    // Declare and initialize the array
+    int array[] = {0, -3, 5, 0, -7, 0, 2, -8, 0, 1};
+    int size = sizeof(array) / sizeof(array[0]); // Calculate the size of the array
+    
+    printf("Calling assembly function to count non-zero values...\n");
+    getch();
 
-    
-    asmfunc(3,5); //assembly proc calling
-   
-   getch();
-    
-    
-    printf("back to  C! \n"); // printing in c
-    
-  
-    
+    // Call the assembly function with the array and its size
+    asmfunc(array, size); 
+
+    getch();
+    printf("Back to C!\n");
+
     return 0;
 }
